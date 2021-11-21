@@ -97,8 +97,6 @@ services:
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-orders
       - NEW_RELIC_LOG=/dev/stdout
-    volumes:
-      - ./newrelic:/newrelic:ro
   orders-db:
     image: mongo:3.4
     hostname: orders-db
