@@ -9,7 +9,7 @@ services:
       - all
     read_only: true
     environment:
-      - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-front-end
       - NEW_RELIC_LOG=/dev/stdout
@@ -61,7 +61,7 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
-      - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-carts
       - NEW_RELIC_LOG=/dev/stdout
@@ -93,7 +93,7 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
-      - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-orders
       - NEW_RELIC_LOG=/dev/stdout
@@ -125,7 +125,7 @@ services:
       - /tmp:rw,noexec,nosuid
     environment:
       - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
-      - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-shipping
       - NEW_RELIC_LOG=/dev/stdout
@@ -136,7 +136,7 @@ services:
     hostname: queue-master
     environment:
       - JAVA_OPTS=-javaagent:/newrelic/newrelic.jar
-      - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
+      - NEW_RELIC_LICENSE_KEY=${NEW_RELIC_LICENSE_KEY}
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-queue-master
       - NEW_RELIC_LOG=/dev/stdout
