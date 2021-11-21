@@ -289,6 +289,17 @@ spec:
         env:
         - name: SESSION_REDIS
           value: "true"
+        - name: NEW_RELIC_APP_NAME
+          value: k8s-front-end
+        - name: NEW_RELIC_LOG
+          value: stdout
+        - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+          value: "true"
+        - name: NEW_RELIC_LICENSE_KEY
+          valueFrom:
+            secretKeyRef:
+              name: newrelic-license
+              key: license  
         securityContext:
           runAsNonRoot: true
           runAsUser: 10001
@@ -348,10 +359,21 @@ spec:
     spec:
       containers:
       - name: orders
-        image: weaveworksdemos/orders:0.4.7
+        image: maci0/orders:0.4.7
         env:
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
+         - name: NEW_RELIC_APP_NAME
+           value: k8s-orders
+         - name: NEW_RELIC_LOG
+           value: stdout
+         - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+           value: "true"
+         - name: NEW_RELIC_LICENSE_KEY
+           valueFrom:
+             secretKeyRef:
+               name: newrelic-license
+               key: license           
         resources:
           limits:
             cpu: 500m
@@ -543,10 +565,21 @@ spec:
     spec:
       containers:
       - name: queue-master
-        image: weaveworksdemos/queue-master:0.3.1
+        image: maci0/queue-master:0.3.1
         env:
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
+         - name: NEW_RELIC_APP_NAME
+           value: k8s-queue-master
+         - name: NEW_RELIC_LOG
+           value: stdout
+         - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+           value: "true"
+         - name: NEW_RELIC_LICENSE_KEY
+           valueFrom:
+             secretKeyRef:
+               name: newrelic-license
+               key: license           
         resources:
           limits:
             cpu: 300m
@@ -715,12 +748,23 @@ spec:
     spec:
       containers:
       - name: shipping
-        image: weaveworksdemos/shipping:0.4.8
+        image: maci0/shipping:0.4.8
         env:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
+         - name: NEW_RELIC_APP_NAME
+           value: k8s-shipping
+         - name: NEW_RELIC_LOG
+           value: stdout
+         - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+           value: "true"
+         - name: NEW_RELIC_LICENSE_KEY
+           valueFrom:
+             secretKeyRef:
+               name: newrelic-license
+               key: license           
         resources:
           limits:
             cpu: 300m
