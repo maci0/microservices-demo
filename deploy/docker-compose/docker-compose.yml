@@ -59,12 +59,12 @@ services:
     tmpfs:
       - /tmp:rw,noexec,nosuid
     environment:
-      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic-java/newrelic.jar
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-carts
     volumes:
-      - ./newrelic-java:/newrelic-java:ro
+      - ./newrelic:/newrelic:ro
   carts-db:
     image: mongo:3.4
     hostname: carts-db
@@ -90,12 +90,12 @@ services:
     tmpfs:
       - /tmp:rw,noexec,nosuid
     environment:
-      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic-java/newrelic.jar
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-orders
     volumes:
-      - ./newrelic-java:/newrelic-java:ro
+      - ./newrelic:/newrelic:ro
   orders-db:
     image: mongo:3.4
     hostname: orders-db
@@ -121,22 +121,22 @@ services:
     tmpfs:
       - /tmp:rw,noexec,nosuid
     environment:
-      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic-java/newrelic.jar
+      - JAVA_OPTS=-Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-shipping
     volumes:
-      - ./newrelic-java:/newrelic-java:ro
+      - ./newrelic:/newrelic:ro
   queue-master:
     image: weaveworksdemos/queue-master:0.3.1
     hostname: queue-master
     environment:
-      - JAVA_OPTS=-javaagent:/newrelic-java/newrelic.jar
+      - JAVA_OPTS=-javaagent:/newrelic/newrelic.jar
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-queue-master
     volumes:
-      - ./newrelic-java:/newrelic-java:ro
+      - ./newrelic:/newrelic:ro
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     cap_drop:
