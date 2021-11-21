@@ -126,7 +126,7 @@ services:
       - NEW_RELIC_APP_NAME=compose-shipping
       - NEW_RELIC_LOG=stdout
   queue-master:
-    image: weaveworksdemos/queue-master:0.3.1
+    image: maci0/queue-master:0.3.1
     hostname: queue-master
     environment:
       - JAVA_OPTS=-javaagent:/newrelic/newrelic.jar
@@ -135,7 +135,6 @@ services:
       - NEW_RELIC_APP_NAME=compose-queue-master
       - NEW_RELIC_LOG=stdout
     volumes:
-      - ./newrelic:/newrelic:ro
       - /var/run/docker.sock:/var/run/docker.sock
     restart: always
     cap_drop:
