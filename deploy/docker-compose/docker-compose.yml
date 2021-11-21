@@ -111,7 +111,7 @@ services:
     tmpfs:
       - /tmp:rw,noexec,nosuid
   shipping:
-    image: weaveworksdemos/shipping:0.4.8
+    image: maci0/shipping:0.4.8
     hostname: shipping
     restart: always
     cap_drop:
@@ -127,8 +127,6 @@ services:
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-shipping
       - NEW_RELIC_LOG=stdout
-    volumes:
-      - ./newrelic:/newrelic:ro
   queue-master:
     image: weaveworksdemos/queue-master:0.3.1
     hostname: queue-master
