@@ -12,6 +12,7 @@ services:
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-front-end
+      - NEW_RELIC_LOG=/dev/stdout
   edge-router:
     image: weaveworksdemos/edge-router:0.1.1
     ports:
@@ -63,6 +64,7 @@ services:
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-carts
+      - NEW_RELIC_LOG=/dev/stdout
     volumes:
       - ./newrelic:/newrelic:ro
   carts-db:
@@ -94,6 +96,7 @@ services:
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-orders
+      - NEW_RELIC_LOG=/dev/stdout
     volumes:
       - ./newrelic:/newrelic:ro
   orders-db:
@@ -125,6 +128,7 @@ services:
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-shipping
+      - NEW_RELIC_LOG=/dev/stdout
     volumes:
       - ./newrelic:/newrelic:ro
   queue-master:
@@ -135,6 +139,7 @@ services:
       - NEW_RELIC_LICENSE_KEY="${NEW_RELIC_LICENSE_KEY}"
       - NEW_RELIC_DISTRIBUTED_TRACING_ENABLED=true
       - NEW_RELIC_APP_NAME=compose-queue-master
+      - NEW_RELIC_LOG=/dev/stdout
     volumes:
       - ./newrelic:/newrelic:ro
       - /var/run/docker.sock:/var/run/docker.sock
