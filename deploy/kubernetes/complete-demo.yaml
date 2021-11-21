@@ -23,10 +23,21 @@ spec:
     spec:
       containers:
       - name: carts
-        image: weaveworksdemos/carts:0.4.8
+        image: maci0/carts:0.4.8
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
+         - name: NEW_RELIC_APP_NAME
+           value: k8s-carts
+         - name: NEW_RELIC_LOG
+           value: stdout
+         - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
+           value: true
+         - name: NEW_RELIC_LICENSE_KEY
+           valueFrom:
+             secretKeyRef:
+               name: newrelic-license
+               key: license
         resources:
           limits:
             cpu: 300m
@@ -340,7 +351,7 @@ spec:
         image: weaveworksdemos/orders:0.4.7
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
         resources:
           limits:
             cpu: 500m
@@ -535,7 +546,7 @@ spec:
         image: weaveworksdemos/queue-master:0.3.1
         env:
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
         resources:
           limits:
             cpu: 300m
@@ -709,7 +720,7 @@ spec:
          - name: ZIPKIN
            value: zipkin.jaeger.svc.cluster.local
          - name: JAVA_OPTS
-           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false
+           value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
         resources:
           limits:
             cpu: 300m
