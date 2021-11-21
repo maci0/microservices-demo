@@ -32,7 +32,7 @@ spec:
          - name: NEW_RELIC_LOG
            value: stdout
          - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
-           value: true
+           value: "true"
          - name: NEW_RELIC_LICENSE_KEY
            valueFrom:
              secretKeyRef:
