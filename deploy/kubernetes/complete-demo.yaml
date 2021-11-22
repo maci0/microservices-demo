@@ -359,12 +359,12 @@ spec:
     spec:
       containers:
       - name: orders
-        image: maci0/orders.net:latest
+        image: maci0/orders:0.4.8
         env:
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
          - name: NEW_RELIC_APP_NAME
-           value: k8s-orders.net
+           value: k8s-orders
          - name: NEW_RELIC_LOG
            value: stdout
          - name: NEW_RELIC_DISTRIBUTED_TRACING_ENABLED
@@ -391,19 +391,14 @@ spec:
               - all
             add:
               - NET_BIND_SERVICE
-          readOnlyRootFilesystem: false
+          readOnlyRootFilesystem: true
         volumeMounts:
         - mountPath: /tmp
-          name: tmp-volume   
-        - mountPath: /.dotnet
-          name: dotnet-tmp-volume             
+          name: tmp-volume             
       volumes:
         - name: tmp-volume
           emptyDir:
-            medium: Memory     
-        - name: dotnet-tmp-volume
-          emptyDir:
-            medium: Memory             
+            medium: Memory               
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
