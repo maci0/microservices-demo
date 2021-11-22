@@ -359,7 +359,7 @@ spec:
     spec:
       containers:
       - name: orders
-        image: maci0/orders:0.4.7
+        image: maci0/orders.net:latest
         env:
          - name: JAVA_OPTS
            value: -Xms64m -Xmx128m -XX:+UseG1GC -Djava.security.egd=file:/dev/urandom -Dspring.zipkin.enabled=false -javaagent:/newrelic/newrelic.jar
@@ -391,7 +391,7 @@ spec:
               - all
             add:
               - NET_BIND_SERVICE
-          readOnlyRootFilesystem: true
+          readOnlyRootFilesystem: false
         volumeMounts:
         - mountPath: /tmp
           name: tmp-volume
