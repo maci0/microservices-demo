@@ -394,11 +394,16 @@ spec:
           readOnlyRootFilesystem: false
         volumeMounts:
         - mountPath: /tmp
-          name: tmp-volume     
+          name: tmp-volume   
+        - mountPath: /.dotnet
+          name: dotnet-tmp-volume             
       volumes:
         - name: tmp-volume
           emptyDir:
             medium: Memory     
+        - name: dotnet-tmp-volume
+          emptyDir:
+            medium: Memory             
       nodeSelector:
         beta.kubernetes.io/os: linux
 ---
