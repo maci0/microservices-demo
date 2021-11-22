@@ -79,14 +79,14 @@ services:
     tmpfs:
       - /tmp:rw,noexec,nosuid
   orders:
-    image: maci0/orders:0.4.7
+    image: maci0/orders.net:latest
     hostname: orders
     restart: always
     cap_drop:
       - all
     cap_add:
       - NET_BIND_SERVICE
-    read_only: true
+    read_only: false
     tmpfs:
       - /tmp:rw,noexec,nosuid
     environment:
